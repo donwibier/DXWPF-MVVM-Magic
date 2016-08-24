@@ -4,7 +4,7 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using System.ComponentModel;
 
-namespace DX_WPF_MVVM_Magic.ViewModels
+namespace Webinar.ViewModels
 {
     [POCOViewModel]
     public class TrackViewModel : IEditableObject

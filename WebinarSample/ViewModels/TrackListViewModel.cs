@@ -3,7 +3,7 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 
-namespace DX_WPF_MVVM_Magic.ViewModels
+namespace Webinar.ViewModels
 {
     [POCOViewModel]
     public class TrackListViewModel

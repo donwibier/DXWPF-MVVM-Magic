@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DX_WPF_MVVM_Magic.Views
+namespace Webinar.Views
 {
     /// <summary>
-    /// Interaction logic for TrackList.xaml
+    /// Interaction logic for TrackView.xaml
     /// </summary>
-    public partial class TrackListView : UserControl
+    public partial class TrackView : UserControl
     {
-        public TrackListView()
+        public TrackView()
         {
             InitializeComponent();
         }

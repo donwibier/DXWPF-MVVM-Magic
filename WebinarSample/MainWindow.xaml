@@ -1,9 +1,9 @@
-﻿<dx:DXWindow x:Class="DX_WPF_MVVM_Magic.MainWindow"
+﻿<dx:DXWindow x:Class="Webinar.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-        xmlns:views="clr-namespace:DX_WPF_MVVM_Magic.Views"
+        xmlns:views="clr-namespace:Webinar.Views"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <views:TrackListView></views:TrackListView>

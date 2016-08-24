@@ -11,15 +11,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DevExpress.Xpf.Core;
 
-namespace DX_WPF_MVVM_Magic.Views
+namespace Webinar
 {
     /// <summary>
-    /// Interaction logic for TrackView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class TrackView : UserControl
+    public partial class MainWindow : DXWindow
     {
-        public TrackView()
+        public MainWindow()
         {
             InitializeComponent();
         }

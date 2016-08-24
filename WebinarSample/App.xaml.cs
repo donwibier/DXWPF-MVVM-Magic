@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using DevExpress.Xpf.Core;
 
-namespace DX_WPF_MVVM_Magic
+namespace Webinar
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DX-WPF-MVVM-Magic", "DX-WPF-MVVM-Magic\DX-WPF-MVVM-Magic.csproj", "{095D9891-0C73-4A08-850A-D6E5C9B93F99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webinar", "WebinarSample\Webinar.csproj", "{095D9891-0C73-4A08-850A-D6E5C9B93F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

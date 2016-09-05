@@ -1,0 +1,54 @@
+﻿<UserControl xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:WebinarEF.ViewModels"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             x:Class="WebinarEF.Views.TrackView"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:TrackViewModel}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+        <dxmvvm:CurrentWindowService></dxmvvm:CurrentWindowService>
+    </dxmvvm:Interaction.Behaviors>
+    <StackPanel>
+        <dxb:ToolBarControl >
+            <dxb:BarButtonItem Content="Clear Name" Command="{Binding ResetNameCommand}"/>
+            <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"/>
+            <dxb:BarButtonItem Content="Cancel" Command="{Binding RevertCommand}"/>
+        </dxb:ToolBarControl>
+        <dxe:TextEdit Width="150" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+        </dxe:TextEdit>
+        <dxe:TextEdit Width="150" Text="{Binding AlbumTitle, UpdateSourceTrigger=PropertyChanged}">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+        </dxe:TextEdit>
+        <dxe:TextEdit Width="150" Text="{Binding Composer, UpdateSourceTrigger=PropertyChanged}">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+        </dxe:TextEdit>
+        <dxe:TextEdit Width="150" Text="{Binding Milliseconds, UpdateSourceTrigger=PropertyChanged}">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+
+        </dxe:TextEdit>
+        <dxe:TextEdit Width="150" Text="{Binding Bytes, UpdateSourceTrigger=PropertyChanged}">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+
+        </dxe:TextEdit>
+
+
+    </StackPanel>
+</UserControl>

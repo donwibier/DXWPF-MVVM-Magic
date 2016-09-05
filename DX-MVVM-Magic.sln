@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webinar", "WebinarSample\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webinar.Tests", "Webinar.Tests\Webinar.Tests.csproj", "{2B947CF9-322D-4FDD-ACA8-12C72C30A14D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebinarEF", "WebinarEF\WebinarEF.csproj", "{72506B68-8B4A-43C7-A565-F49E0ED2B110}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2B947CF9-322D-4FDD-ACA8-12C72C30A14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B947CF9-322D-4FDD-ACA8-12C72C30A14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B947CF9-322D-4FDD-ACA8-12C72C30A14D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72506B68-8B4A-43C7-A565-F49E0ED2B110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72506B68-8B4A-43C7-A565-F49E0ED2B110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72506B68-8B4A-43C7-A565-F49E0ED2B110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72506B68-8B4A-43C7-A565-F49E0ED2B110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

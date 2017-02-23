@@ -35,13 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Core.v16.1" />
-    <Reference Include="DevExpress.Data.v16.1" />
-    <Reference Include="DevExpress.Printing.v16.1.Core" />
-    <Reference Include="DevExpress.Mvvm.v16.1" />
-    <Reference Include="DevExpress.Xpf.Grid.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Grid.v16.1.Core, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Themes.DXStyle.v16.1" />
+    <Reference Include="DevExpress.Xpf.Core.v16.2" />
+    <Reference Include="DevExpress.Data.v16.2" />
+    <Reference Include="DevExpress.Printing.v16.2.Core" />
+    <Reference Include="DevExpress.Mvvm.v16.2" />
+    <Reference Include="DevExpress.Xpf.Printing.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Themes.DXStyle.v16.2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />

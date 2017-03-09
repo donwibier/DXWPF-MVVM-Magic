@@ -32,7 +32,7 @@ namespace Webinar.NUnitTests
         public void TestResetNameCommandNo()
         {
             
-            var vm = TrackViewModel.Create(new TrackInfo() { Name = INITIAL_TRACKNAME});
+            var vm = TrackViewModel.Create(0, INITIAL_TRACKNAME, 0, 0, 0, "", 0, 0);
             var serviceContainer = (vm as ISupportServices).ServiceContainer;
             
             IMessageBoxService msgSvc = new DummyServiceForMessageBox(MessageResult.No);
@@ -52,7 +52,7 @@ namespace Webinar.NUnitTests
         [Test]
         public void TestResetNameCommandYes()
         {
-            var vm = TrackViewModel.Create(new TrackInfo() { Name = INITIAL_TRACKNAME });
+            var vm = TrackViewModel.Create(0, INITIAL_TRACKNAME, 0, 0, 0, "", 0, 0);
             var serviceContainer = (vm as ISupportServices).ServiceContainer;
             
             IMessageBoxService msgSvc = new DummyServiceForMessageBox(MessageResult.Yes);
@@ -61,28 +61,6 @@ namespace Webinar.NUnitTests
             //Testing the ResetName command while clicking Yes on the confirmation dialog...
             vm.ResetName();            
             Assert.That(vm.Name, Is.EqualTo(""));            
-        }
-
-        [Test]
-        public void TestSaveCommand()
-        {
-            var vm = TrackViewModel.Create(new TrackInfo() { Name = INITIAL_TRACKNAME });
-            vm.Name = MODIFIED_TRACKNAME;
-
-            //Testing the Save command...
-            vm.Save();
-            Assert.That(vm.Name, Is.EqualTo(MODIFIED_TRACKNAME));
-        }
-
-        [Test]
-        public void TestCancelCommand()
-        {
-            var vm = TrackViewModel.Create(new TrackInfo() { Name = INITIAL_TRACKNAME });
-            vm.Name = MODIFIED_TRACKNAME;
-
-            //Testing the Revert command...
-            vm.Revert();
-            Assert.That(vm.Name, Is.EqualTo(INITIAL_TRACKNAME));
         }
     }
 }

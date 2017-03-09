@@ -3,87 +3,85 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Webinar.ViewModels
 {
     [POCOViewModel]
-    public class TrackViewModel : IEditableObject
+    public class TrackViewModel 
     {
-        private TrackInfo track;
+		protected TrackViewModel()
+		{
+		}
+		protected TrackViewModel(int? trackId, string name, int? albumId, int mediaTypeId, int? genreId,
+											string composer, int milliSeconds, int? bytes)
+		{
+			this.TrackId = trackId;
+			this.Name = name;
+			this.AlbumId = albumId;
+			this.MediaTypeId = mediaTypeId;
+			this.GenreId = genreId;
+			this.Composer = composer;
+			this.Milliseconds = milliSeconds;
+			this.Bytes = bytes;
+		}
 
-        //protected TrackViewModel()
-        //{
-        //    // for test purposes only !!
-        //    Track = new TrackList()[15];
-        //}
-        protected TrackViewModel() : this(new TrackList()[15]) { }
-        protected TrackViewModel(TrackInfo track)
-        {
-            if (track == null)
-                throw new ArgumentNullException("track", "track is null.");
-            Load(track);
-        }
-        public static TrackViewModel Create()
-        {
-            return ViewModelSource.Create(() => new TrackViewModel());
-        }
-        public static TrackViewModel Create(TrackInfo track)
-        {
-            return ViewModelSource.Create(() => new TrackViewModel(track));
-        }
-        public bool CanResetName()
-        {
-            return track != null && !String.IsNullOrEmpty(Name);
-        }
-        public void ResetName()
-        {
-            if (track != null)
-            {
-                if (MessageBoxService.ShowMessage("Are you sure you want to reset the Name value?",
-                                    "Question",
-                                    MessageButton.YesNo,
-                                    MessageIcon.Question,
-                                    MessageResult.No) == MessageResult.Yes)
-                    Name = "";
-            }
-        }
+		public static TrackViewModel Create()
+		{
+			var t = new TrackList()[15];
 
-        [ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
-        protected virtual IMessageBoxService MessageBoxService { get { return null; } }
+			return ViewModelSource.Create(() => new TrackViewModel(t.TrackId, t.Name, t.AlbumId, t.MediaTypeId, t.GenreId,
+											t.Composer, t.Milliseconds, t.Bytes));
+		}
 
-        private void Load(TrackInfo track)
+		public static TrackViewModel Create(int? trackId, string name, int? albumId, int mediaTypeId, int? genreId,
+											string composer, int milliSeconds, int? bytes)
+		{
+			return ViewModelSource.Create(() => new TrackViewModel(trackId, name, albumId, mediaTypeId, genreId, composer, milliSeconds, bytes));
+		}
+		public bool CanResetName()
         {
-            this.track = track;
-            this.TrackId = track.TrackId;
-            this.Name = track.Name;
-            this.Composer = track.Composer;
+            return !String.IsNullOrEmpty(Name);
         }
+		public void ResetName()
+		{
+			if (MessageBoxService.ShowMessage("Are you sure you want to reset the Name value?",
+								"Question",
+								MessageButton.YesNo,
+								MessageIcon.Question,
+								MessageResult.No) == MessageResult.Yes)
+				Name = "";
+		}
 
-        void IEditableObject.BeginEdit()
-        {
+		[ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
+		protected virtual IMessageBoxService MessageBoxService { get { return null; } }
+		protected virtual ICurrentWindowService CurrentWindowService { get { return null; } }
 
-        }
+		[Editable(false)]
+		public int? TrackId { get; set; }
+		public virtual string Name { get; set; }
+		public virtual int? AlbumId { get; set; }
+		public virtual int MediaTypeId { get; set; }
+		public virtual int? GenreId { get; set; }
+		public virtual string Composer { get; set; }
+		public virtual int Milliseconds { get; set; }
+		public virtual int? Bytes { get; set; }
 
-        void IEditableObject.EndEdit()
-        {
-            if (!string.Equals(Name, track.Name))
-                track.Name = Name;
-            if (!string.Equals(Composer, track.Composer))
-                track.Composer = Composer;
-            if (TrackId != track.TrackId)
-                track.TrackId = TrackId;
-        }
+		public TrackViewModel Clone()
+		{
+			return TrackViewModel.Create(TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes);
+		}
 
-        void IEditableObject.CancelEdit()
-        {
-            Load(this.track);
-        }
-
-        public virtual int TrackId { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string Composer { get; set; }
-
-        public void Save() { ((IEditableObject)this).EndEdit(); }
-        public void Revert() { ((IEditableObject)this).CancelEdit(); }
-    }
+		public void LoadFrom(TrackViewModel source)
+		{
+			this.TrackId = source.TrackId;
+			this.Name = source.Name;
+			this.AlbumId = source.AlbumId;
+			this.MediaTypeId = source.MediaTypeId;
+			this.GenreId = source.GenreId;
+			this.Composer = source.Composer;
+			this.Milliseconds = source.Milliseconds;
+			this.Bytes = source.Bytes;
+		}
+	}
 }

@@ -2,31 +2,62 @@
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Webinar.ViewModels
 {
     [POCOViewModel]
     public class TrackListViewModel
     {
-        public virtual TrackList Tracks { get; set; }
+		public virtual ObservableCollection<TrackViewModel> Tracks
+		{
+			get;
+			/* We only want to set this through the ViewModel code */
+			protected set;
+		}
 
-        protected TrackListViewModel()
-        {
-            Tracks = new TrackList();
-        }
-        public static TrackListViewModel Create()
-        {
-            return ViewModelSource.Create(() => new TrackListViewModel());
-        }
+		public virtual bool IsLoading
+		{
+			get;
+			protected set;
+		}
 
-        [ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
-        protected virtual IDocumentManagerService DocumentManagerService { get { return null; } }
+		protected TrackListViewModel()
+		{
+		}
 
-        public void EditTrack(object trackObject)
-        {
-            var track = trackObject as TrackInfo;
-            var document = DocumentManagerService.CreateDocument("TrackView", TrackViewModel.Create(track));
-            document.Show();
-        }
-    }
+		public static TrackListViewModel Create()
+		{
+			return ViewModelSource.Create(() => new TrackListViewModel());
+		}
+
+		[ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
+		public virtual IDialogService DialogService { get { return null; } }
+		[ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
+		protected virtual IDispatcherService DispatcherService { get { return null; } }
+
+
+		public void EditTrack(TrackViewModel track)
+		{
+			var trackClone = track.Clone();
+			if (DialogService.ShowDialog(
+				MessageButton.OKCancel, "Edit Track", "TrackView", trackClone) == MessageResult.OK)
+			{
+				track.LoadFrom(trackClone);
+				DataLayer.PersistTrack(track);
+			}
+		}
+
+		public Task LoadTracks()
+		{
+			IsLoading = true;
+
+			return Task.Factory.StartNew((state) =>
+			{
+				Tracks = new ObservableCollection<TrackViewModel>(DataLayer.GetTrackViewModelList());
+				IsLoading = false;
+			}, DispatcherService);
+		}
+	}
 }

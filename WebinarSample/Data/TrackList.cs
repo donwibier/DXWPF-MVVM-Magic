@@ -2535,9 +2535,4 @@ public class TrackList : ObservableCollection<TrackInfo>
         Add(new TrackInfo(3502, "Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro", 346, 2, 24, "Wolfgang Amadeus Mozart", 221331, 3665114));
         Add(new TrackInfo(3503, "Koyaanisqatsi", 347, 2, 10, "Philip Glass", 206005, 3305164));
     }
-
-    public IEnumerable<string> GetFieldNames()
-    {
-        return new string[] { "Name", "Population", "AreaKM2" };
-    }
 }

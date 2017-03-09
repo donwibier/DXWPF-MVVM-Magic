@@ -9,16 +9,15 @@
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:TrackViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <dxmvvm:Interaction.Behaviors>
-        <dx:DXMessageBoxService/>
-    </dxmvvm:Interaction.Behaviors>
+		<dx:DXMessageBoxService/>
+		<dxmvvm:CurrentWindowService/>
+	</dxmvvm:Interaction.Behaviors>
     <StackPanel>
         <dxb:ToolBarControl VerticalAlignment="Stretch">
             <dxb:BarButtonItem Content="Clear Name" Command="{Binding ResetNameCommand}"/>
-            <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"/>
-            <dxb:BarButtonItem Content="Cancel" Command="{Binding RevertCommand}"/>
-        </dxb:ToolBarControl>
-        <dxe:TextEdit Text="{Binding TrackId}" />
-        <dxe:TextEdit Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-        <dxe:TextEdit Text="{Binding Composer}" />
+		</dxb:ToolBarControl>
+        <dxe:TextEdit Text="{Binding TrackId, Mode=OneWay}" />
+        <dxe:TextEdit Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <dxe:TextEdit Text="{Binding Composer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 </UserControl>

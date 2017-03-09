@@ -3,44 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:WebinarEF.ViewModels"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
              x:Class="WebinarEF.Views.TrackView"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:TrackViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <dxmvvm:Interaction.Behaviors>
-        <dx:DXMessageBoxService/>
-        <dxmvvm:CurrentWindowService></dxmvvm:CurrentWindowService>
-    </dxmvvm:Interaction.Behaviors>
-    <StackPanel>
-        <dxb:ToolBarControl >
-            <dxb:BarButtonItem Content="Clear Name" Command="{Binding ResetNameCommand}"/>
-        </dxb:ToolBarControl>
-        <dxlc:LayoutControl>
-            <dxlc:LayoutGroup View="Group">
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutItem Label="Name">
-                        <dxe:TextEdit Text="{Binding Name}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Album Title">
-                        <dxe:TextEdit Text="{Binding AlbumTitle}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Composer">
-                        <dxe:TextEdit Text="{Binding Composer}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Length">
-                        <dxe:TextEdit Text="{Binding Milliseconds}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Bytes">
-                        <dxe:TextEdit Text="{Binding Bytes}"/>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-            </dxlc:LayoutGroup>
-        </dxlc:LayoutControl>
+	<dxmvvm:Interaction.Behaviors>
+		<dx:DXMessageBoxService/>
+		<dxmvvm:CurrentWindowService/>
+	</dxmvvm:Interaction.Behaviors>
+	<StackPanel>
+		<dxb:ToolBarControl>
+			<dxb:BarButtonItem Content="Clear Name" Command="{Binding ResetNameCommand}"/>
+		</dxb:ToolBarControl>
+
+		<dxlc:LayoutControl>
+			<dxlc:LayoutGroup View="Group">
+				<dxlc:LayoutGroup Orientation="Vertical">
+					<dxlc:LayoutItem Label="Name">
+						<dxe:TextEdit Text="{Binding Name}"/>
+					</dxlc:LayoutItem>
+					<dxlc:LayoutItem Label="Album">
+						<dxe:ComboBoxEdit EditValue="{Binding AlbumId}" ItemsSource="{Binding AlbumLookupData}" DisplayMember="Value" ValueMember="Key" />
+					</dxlc:LayoutItem>
+					<dxlc:LayoutItem Label="Composer">
+						<dxe:TextEdit Text="{Binding Composer}"/>
+					</dxlc:LayoutItem>
+					<dxlc:LayoutItem Label="Length">
+						<dxe:TextEdit Text="{Binding Milliseconds}"/>
+					</dxlc:LayoutItem>
+					<dxlc:LayoutItem Label="Bytes">
+						<dxe:TextEdit Text="{Binding Bytes}"/>
+					</dxlc:LayoutItem>
+				</dxlc:LayoutGroup>
+			</dxlc:LayoutGroup>
+		</dxlc:LayoutControl>
 
 
-    </StackPanel>
+
+
+	</StackPanel>
 </UserControl>

@@ -5,7 +5,7 @@ public class TrackInfo : INotifyPropertyChanged
 {
     public TrackInfo() { }
     public TrackInfo(int trackId, string name, int albumId, int mediaTypeId,
-                        int genreId, string composer, double milliseconds, double bytes)
+                        int genreId, string composer, int milliseconds, int bytes)
     {
         TrackId = trackId;
         Name = name;
@@ -42,8 +42,8 @@ public class TrackInfo : INotifyPropertyChanged
             OnPropertyChanged("Name");
         }
     }
-    int albumId;
-    public int AlbumId
+    int? albumId;
+    public int? AlbumId
     {
         get { return albumId; }
         set
@@ -66,8 +66,8 @@ public class TrackInfo : INotifyPropertyChanged
             OnPropertyChanged("MediaTypeId");
         }
     }
-    int genreId;
-    public int GenreId
+    int? genreId;
+    public int? GenreId
     {
         get { return genreId; }
         set
@@ -90,8 +90,8 @@ public class TrackInfo : INotifyPropertyChanged
             OnPropertyChanged("Composer");
         }
     }
-    double milliseconds;
-    public double Milliseconds
+    int milliseconds;
+    public int Milliseconds
     {
         get { return milliseconds; }
         set
@@ -102,8 +102,8 @@ public class TrackInfo : INotifyPropertyChanged
             OnPropertyChanged("Milliseconds");
         }
     }
-    double bytes;
-    public double Bytes
+    int? bytes;
+    public int? Bytes
     {
         get { return bytes; }
         set

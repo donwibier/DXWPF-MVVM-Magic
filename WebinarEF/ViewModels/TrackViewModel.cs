@@ -19,9 +19,9 @@ namespace WebinarEF.ViewModels
 
 		protected TrackViewModel(int trackId, string name, int? albumId, int? mediaTypeId, int? genreId,
 											string composer, int milliSeconds, int? bytes,
-											IEnumerable<LookupItem> albumLookupData,
-											IEnumerable<LookupItem> mediaLookupData,
-											IEnumerable<LookupItem> genreLookupData)
+											IList<LookupItem> albumLookupData,
+											IList<LookupItem> mediaLookupData,
+											IList<LookupItem> genreLookupData)
 		{
 			this.TrackId = trackId;
 			this.Name = name;
@@ -47,9 +47,9 @@ namespace WebinarEF.ViewModels
 
 		public static TrackViewModel Create(int trackId, string name, int? albumId, int? mediaTypeId, int? genreId, 
 											string composer, int milliSeconds, int? bytes,
-											IEnumerable<LookupItem> albumLookupData,
-											IEnumerable<LookupItem> mediaLookupData,
-											IEnumerable<LookupItem> genreLookupData)
+											IList<LookupItem> albumLookupData,
+											IList<LookupItem> mediaLookupData,
+											IList<LookupItem> genreLookupData)
 		{
 			return ViewModelSource.Create(() => new TrackViewModel(trackId, name, albumId, mediaTypeId, genreId, composer, milliSeconds, bytes,
 				albumLookupData, mediaLookupData, genreLookupData));

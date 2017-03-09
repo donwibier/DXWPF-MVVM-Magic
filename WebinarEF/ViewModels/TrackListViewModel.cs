@@ -14,7 +14,7 @@ namespace WebinarEF.ViewModels
     [POCOViewModel]
     public class TrackListViewModel
 	{
-        public IEnumerable<TrackViewModel> Tracks
+        public virtual ObservableCollection<TrackViewModel> Tracks
         {
             get;
             /* We only want to set this through the ViewModel code */
@@ -30,7 +30,7 @@ namespace WebinarEF.ViewModels
         protected TrackListViewModel()
         {
 			//if (!IsLoading)
-				LoadTracks();
+				//LoadTracks();
         }
         public static TrackListViewModel Create()
         {
@@ -59,14 +59,7 @@ namespace WebinarEF.ViewModels
 				Tracks = new ObservableCollection<TrackViewModel>(DataLayer.GetTrackViewModelList());
 				IsLoading = false;
 			}, DispatcherService);
-		}
-		//public void LoadTracks()
-		//{
-		//	IsLoading = true;
-		//	Tracks = new ObservableCollection<TrackViewModel>(DataLayer.GetTrackViewModelList());
-		//	IsLoading = false;
-
-		//}
+		}		
 	}
 }
     

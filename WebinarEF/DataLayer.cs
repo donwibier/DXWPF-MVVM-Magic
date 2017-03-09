@@ -43,9 +43,22 @@ namespace WebinarEF
 			}
 		}
 
-		//public static TrackViewModel InsertTrack(TrackViewModel trackViewModel)
-		//{
-
-		//}
+        public static void PersistTrack(TrackViewModel track)
+        {
+            using (var ctx = new ChinookContext())
+            {
+                Track pTrack = track.TrackId.HasValue ?
+                    ctx.Track.First(t => t.TrackId == track.TrackId) :
+                    new Track();
+                pTrack.Name = track.Name;
+                pTrack.AlbumId = track.AlbumId;
+                pTrack.MediaTypeId = track.MediaTypeId;
+                pTrack.GenreId = track.GenreId;
+                pTrack.Composer = track.Composer;
+                pTrack.Milliseconds = track.Milliseconds;
+                pTrack.Bytes = track.Bytes;
+                ctx.SaveChanges();
+            }
+        }
 	}
 }

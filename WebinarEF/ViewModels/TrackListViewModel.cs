@@ -35,18 +35,22 @@ namespace WebinarEF.ViewModels
         {
             return ViewModelSource.Create(() => new TrackListViewModel());
         }
-        
-        [ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
-        protected virtual IDocumentManagerService DocumentManagerService { get { return null; } }
 
+        [ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
+        public virtual IDialogService DialogService { get { return null; } }
         [ServiceProperty(SearchMode = ServiceSearchMode.PreferParents)]
         protected virtual IDispatcherService DispatcherService { get { return null; } }
 
 
         public void EditTrack(TrackViewModel track)
         {
-			var document = DocumentManagerService.FindDocument("TrackView", track) ?? DocumentManagerService.CreateDocument("TrackView", track);
-			document.Show();
+            var trackClone = track.Clone();
+            if (DialogService.ShowDialog(
+                MessageButton.OKCancel, "Edit Track", "TrackView", trackClone) == MessageResult.OK)
+            {
+                track.LoadFrom(trackClone);
+                DataLayer.PersistTrack(track);
+            }
 		}
 
 		public Task LoadTracks()

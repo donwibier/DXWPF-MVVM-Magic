@@ -29,9 +29,8 @@ namespace WebinarEF.ViewModels
 
         protected TrackListViewModel()
         {
-			//if (!IsLoading)
-				//LoadTracks();
         }
+
         public static TrackListViewModel Create()
         {
             return ViewModelSource.Create(() => new TrackListViewModel());

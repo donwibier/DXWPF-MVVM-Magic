@@ -11,13 +11,13 @@ using System.Collections.Generic;
 namespace WebinarEF.ViewModels
 {
     [POCOViewModel]
-    public class TrackViewModel: IEditableObject, IDocumentContent
+    public class TrackViewModel
     {
         protected TrackViewModel()
         {
         }
 
-		protected TrackViewModel(int trackId, string name, int? albumId, int? mediaTypeId, int? genreId,
+		protected TrackViewModel(int? trackId, string name, int? albumId, int mediaTypeId, int? genreId,
 											string composer, int milliSeconds, int? bytes,
 											IList<LookupItem> albumLookupData,
 											IList<LookupItem> mediaLookupData,
@@ -45,7 +45,7 @@ namespace WebinarEF.ViewModels
             return ViewModelSource.Create(() => new TrackViewModel());
         }
 
-		public static TrackViewModel Create(int trackId, string name, int? albumId, int? mediaTypeId, int? genreId, 
+		public static TrackViewModel Create(int? trackId, string name, int? albumId, int mediaTypeId, int? genreId, 
 											string composer, int milliSeconds, int? bytes,
 											IList<LookupItem> albumLookupData,
 											IList<LookupItem> mediaLookupData,
@@ -54,10 +54,7 @@ namespace WebinarEF.ViewModels
 			return ViewModelSource.Create(() => new TrackViewModel(trackId, name, albumId, mediaTypeId, genreId, composer, milliSeconds, bytes,
 				albumLookupData, mediaLookupData, genreLookupData));
 		}
-        //public static TrackViewModel Create(TrackInfo track)
-        //{
-        //    return ViewModelSource.Create(() => new TrackViewModel(track));
-        //}
+
         public bool CanResetName()
         {
             return !String.IsNullOrEmpty(Name);
@@ -76,108 +73,42 @@ namespace WebinarEF.ViewModels
         protected virtual IMessageBoxService MessageBoxService { get { return null; } }
         protected virtual ICurrentWindowService CurrentWindowService { get { return null; } }
 
-        private bool hasChanges;
-        public void OnChange()
-        {
-            hasChanges = true;
-            this.RaiseCanExecuteChanged(x => x.Save());
-        }
-
-        #region IEditableObject implementation
-        void IEditableObject.BeginEdit()
-        {
-
-        }
-
-        void IEditableObject.EndEdit()
-        {
-            //if (!string.Equals(Name, track.Name))
-            //    track.Name = Name;
-            //if (!string.Equals(Composer, track.Composer))
-            //    track.Composer = Composer;
-            //if (TrackId != track.TrackId)
-            //    track.TrackId = TrackId;
-     //       using (var ctx = new ChinookModel())
-     //       {
-     //           var track = (from t in ctx.Track
-     //                        where t.TrackId == this.track.TrackId
-     //                        select t).FirstOrDefault();
-                                    
-     //           if (track != null)
-     //           {
-     //               track.TrackId = this.TrackId;
-     //               track.Name = this.Name;
-     //               track.AlbumId = this.AlbumId;
-     //               //track.AlbumTitle = this.AlbumTitle;
-     //               track.MediaTypeId = this.MediaTypeId;
-     //               //track.MediaType = this.MediaType;
-     //               track.GenreId = this.GenreId;
-     //               //track.Genre = this.Genre;
-     //               track.Composer = this.Composer;
-     //               track.Milliseconds = this.Milliseconds;
-     //               track.Bytes = this.Bytes;
-
-     //               ctx.SaveChanges();
-                    
-     //               hasChanges = false;
-					//this.RaiseCanExecuteChanged(x => x.Save());                    
-     //           }
-     //           CurrentWindowService.Close();
-     //       }
-        }
-
-        void IEditableObject.CancelEdit()
-        {
-            //Load(this.track);
-
-            CurrentWindowService.Close();
-        }
-
-        #endregion
-        public bool CanSave()
-        {
-            return hasChanges;
-        }
-        public void Save() { ((IEditableObject)this).EndEdit(); }
-        public void Revert() { ((IEditableObject)this).CancelEdit(); }
-
-
         [Editable(false)]
-        public int TrackId { get; set; }
+        public int? TrackId { get; set; }
         public virtual string Name { get; set; }
         public virtual int? AlbumId { get; set; }
-        public virtual int? MediaTypeId { get; set; }
+        public virtual int MediaTypeId { get; set; }
         public virtual int? GenreId { get; set; }
         public virtual string Composer { get; set; }
         public virtual int Milliseconds { get; set; }
         public virtual int? Bytes { get; set; }
 
-		public virtual IEnumerable<LookupItem> AlbumLookupData { get; protected set; }
-		public virtual IEnumerable<LookupItem> MediaLookupData { get; protected set; }
-		public virtual IEnumerable<LookupItem> GenreLookupData { get; protected set; }
+		public virtual IList<LookupItem> AlbumLookupData { get; protected set; }
+		public virtual IList<LookupItem> MediaLookupData { get; protected set; }
+		public virtual IList<LookupItem> GenreLookupData { get; protected set; }
 
-
-		#region IDocumentContent implementation
-		IDocumentOwner IDocumentContent.DocumentOwner { get; set; }
-
-        object IDocumentContent.Title
-        {
-            get { return Name; }
-        }
-
-        void IDocumentContent.OnClose(CancelEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        void IDocumentContent.OnDestroy()
-        {
-            //throw new NotImplementedException();
-        }
-
-        #endregion
 
        
+        // Feel free to use any other automated cloning logic instead of these helpers.
+        // Included like this in this sample code for clarity.
+        public TrackViewModel Clone()
+        {
+            return TrackViewModel.Create(TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, AlbumLookupData, MediaLookupData, GenreLookupData);
+        }
 
+        public void LoadFrom(TrackViewModel source)
+        {
+            this.TrackId = source.TrackId;
+            this.Name = source.Name;
+            this.AlbumId = source.AlbumId;
+            this.MediaTypeId = source.MediaTypeId;
+            this.GenreId = source.GenreId;
+            this.Composer = source.Composer;
+            this.Milliseconds = source.Milliseconds;
+            this.Bytes = source.Bytes;
+            this.AlbumLookupData = source.AlbumLookupData;
+            this.MediaLookupData = source.MediaLookupData;
+            this.GenreLookupData = source.GenreLookupData;
+        }
     }
 }

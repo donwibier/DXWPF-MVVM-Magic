@@ -18,36 +18,28 @@
     <StackPanel>
         <dxb:ToolBarControl >
             <dxb:BarButtonItem Content="Clear Name" Command="{Binding ResetNameCommand}"/>
-            <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"/>
-            <dxb:BarButtonItem Content="Cancel" Command="{Binding RevertCommand}"/>
         </dxb:ToolBarControl>
-        <dxe:TextEdit Width="150" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
-        </dxe:TextEdit>
-        <dxe:TextEdit Width="150" Text="{Binding AlbumTitle, UpdateSourceTrigger=PropertyChanged}">
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
-        </dxe:TextEdit>
-        <dxe:TextEdit Width="150" Text="{Binding Composer, UpdateSourceTrigger=PropertyChanged}">
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
-        </dxe:TextEdit>
-        <dxe:TextEdit Width="150" Text="{Binding Milliseconds, UpdateSourceTrigger=PropertyChanged}">
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
-
-        </dxe:TextEdit>
-        <dxe:TextEdit Width="150" Text="{Binding Bytes, UpdateSourceTrigger=PropertyChanged}">
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding OnChangeCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
-
-        </dxe:TextEdit>
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup View="Group">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem Label="Name">
+                        <dxe:TextEdit Text="{Binding Name}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Album Title">
+                        <dxe:TextEdit Text="{Binding AlbumTitle}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Composer">
+                        <dxe:TextEdit Text="{Binding Composer}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Length">
+                        <dxe:TextEdit Text="{Binding Milliseconds}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Bytes">
+                        <dxe:TextEdit Text="{Binding Bytes}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
 
 
     </StackPanel>
